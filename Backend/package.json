@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "npx nodemon server.js",
-    "build:frontend": "cd ../frontend && npm run build && rm -rf ../backend/public && cp -r ../frontend/dist ../backend/public"
+    "dev": "npx nodemon server.js"
   },
   "keywords": [],
   "author": "",
