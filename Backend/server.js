@@ -1,16 +1,27 @@
 require("dotenv").config();
-const app = require("./src/app");
+const path = require("path");
+const express = require("express");
 const connectToDB = require("./src/db/db");
+const app = require("./src/app");
 
-const PORT = process.env.PORT || 5000;
+
+app.use(express.static(path.join(__dirname, "public")));
+
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+
+const PORT = process.env.PORT || 8080;
 
 connectToDB()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(` Server is running on http://localhost:${PORT}`);
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.error(" Failed in Connecting to DB:", err.message);
-    process.exit(1); 
+    console.error("❌ Failed to connect to DB:", err.message);
+    process.exit(1);
   });
