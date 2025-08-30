@@ -6,11 +6,10 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
-// ✅ Dynamic CORS setup
+
 const allowedOrigins = [
   "http://localhost:5173",  // Vite local frontend
   "http://localhost:8080",  // Backend local
-  process.env.FRONTEND_URL, // Production frontend (Render domain)
 ];
 
 app.use(
